@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg">
+
+    <!-- Play canvas: leftStick, rightStick, and action buttons are added here
+         at runtime with absolute FrameLayout.LayoutParams so they can be
+         freely dragged/resized in Edit Layout mode. -->
+    <FrameLayout
+        android:id="@+id/playCanvas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.phonepad.gamepad.JoystickView
+            android:id="@+id/leftStick"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="bottom|start"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="16dp" />
+
+        <com.phonepad.gamepad.TouchpadView
+            android:id="@+id/mousePad"
+            android:layout_width="220dp"
+            android:layout_height="140dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="16dp" />
+
+    </FrameLayout>
+
+    <!-- Small, unobtrusive settings toggle — everything else lives behind it
+         so normal play never risks a stray tap on a mode/sensitivity control. -->
+    <Button
+        android:id="@+id/btnGear"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="6dp"
+        android:background="#552A2A31"
+        android:text="\u2699"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp" />
+
+    <!-- Collapsible control panel, hidden by default -->
+    <LinearLayout
+        android:id="@+id/controlPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="#E61B1B1F"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Starting..."
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnModeSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginEnd="6dp"
+                android:background="@color/btn"
+                android:text="Switch to WiFi"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp"
+                android:paddingHorizontal="8dp" />
+
+            <Button
+                android:id="@+id/btnLayoutToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginEnd="6dp"
+                android:background="@color/btn"
+                android:text="\uD83C\uDFAE Gamepad"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp"
+                android:paddingHorizontal="8dp" />
+
+            <Button
+                android:id="@+id/btnConnectDevice"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@color/btn"
+                android:text="Connect\u2026"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp"
+                android:paddingHorizontal="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mouse sens."
+                android:textColor="#AAAAAA"
+                android:textSize="10sp" />
+
+            <SeekBar
+                android:id="@+id/sensitivitySeek"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="8dp"
+                android:max="29"
+                android:progress="9" />
+
+            <Button
+                android:id="@+id/btnAddKey"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginEnd="6dp"
+                android:background="@color/btn"
+                android:text="+ Key"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp"
+                android:paddingHorizontal="8dp" />
+
+            <ToggleButton
+                android:id="@+id/btnEditLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@color/btn"
+                android:textColor="#FFFFFF"
+                android:textOn="Editing: ON"
+                android:textOff="Edit Layout"
+                android:textSize="10sp"
+                android:paddingHorizontal="8dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="Edit Layout: drag to move, pinch to resize, long-press to remap"
+            android:textColor="#666666"
+            android:textSize="9sp" />
+    </LinearLayout>
+
+</FrameLayout>
